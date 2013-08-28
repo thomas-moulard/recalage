@@ -1,0 +1,21 @@
+#! /bin/sh
+rm -f Makefile.rules
+touch Makefile.rules
+cd src && gcc -M *.c > .depends && cd ..
+r=`uname -s`
+
+echo "OUT=recalage" >> Makefile.rules
+
+case "$r" in
+NetBSD)
+	echo "CC=/usr/bin/gcc" >> Makefile.rules
+	echo "CFLAGS= -Wall -Werror -W -ansi -pedantic -Wfloat-equal \\" >> Makefile.rules
+	echo "-pipe -O3 -funroll-loops" >> Makefile.rules
+	echo "LDFLAGS= -lm" >> Makefile.rules
+;;
+*)
+	echo "CC= gcc" >>  Makefile.rules
+	echo "CFLAGS= -Wall -Werror" >> Makefile.rules
+	echo "LDFLAGS= -lm" >> Makefile.rules
+;;
+esac

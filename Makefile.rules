@@ -1,0 +1,5 @@
+OUT=recalage
+CC=/usr/bin/gcc
+CFLAGS= -Wall -Werror -W -ansi -pedantic -Wfloat-equal \
+-pipe -O3 -funroll-loops
+LDFLAGS= -lm
